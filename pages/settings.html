@@ -1,82 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <link rel="stylesheet" href="../style.css">
-</head>
-<body class="settings-body">
-    <div class="settings-container">
-        <!-- Vista di selezione delle card -->
-        <div id="settings-selection-view">
-            <div class="settings-grid">
-                <div class="settings-card" data-setting="impostazioni-base">
-                    <i class="fa-solid fa-sliders fa-2xl"></i> <br> Impostazioni Base
-                </div>
-                <div class="settings-card" data-setting="impostazioni-account">
-                    <i class="fa-solid fa-user fa-2xl"></i> <br> Account
-                </div>
-                <div class="settings-card" data-setting="abbonamento">
-                    <i class="fa-solid fa-circle-info fa-2xl"></i> <br> Help
-                </div>
-                <div class="settings-card" data-setting="aspetto-sito">
-                    <i class="fa-solid fa-palette fa-2xl"></i> <br> Aspetto del Sito
-                </div>
-                <div class="settings-card" data-setting="notifiche-email">
-                    <i class="fa-solid fa-envelope fa-2xl"></i> <br> Notifiche Email
-                </div>
-                <div class="settings-card" data-setting="avvisi-sito">
-                    <i class="fa-solid fa-message fa-2xl"></i> <br> Avvisi del Sito
-                </div>
-            </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Configurazione Dinamica</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body class="settings-body">
+    <div class="settings-container" id="settings-container">
+      <!-- Vista di selezione delle card -->
+      <div id="settings-selection-view">
+        <div class="settings-grid">
+          <div class="settings-card" data-setting="impostazioni-base">
+            <i class="fa-solid fa-sliders fa-2xl"></i> <br />
+            Impostazioni Base
+          </div>
+          <div class="settings-card" data-setting="impostazioni-account">
+            <i class="fa-solid fa-user fa-2xl"></i> <br />
+            Account
+          </div>
+          <div class="settings-card" data-setting="abbonamento">
+            <i class="fa-solid fa-circle-info fa-2xl"></i> <br />
+            Help
+          </div>
+          <div class="settings-card" data-setting="aspetto-sito">
+            <i class="fa-solid fa-palette fa-2xl"></i> <br />
+            Aspetto del Sito
+          </div>
+          <div class="settings-card" data-setting="notifiche-email">
+            <i class="fa-solid fa-envelope fa-2xl"></i> <br />
+            Notifiche Email
+          </div>
+          <div class="settings-card" data-setting="avvisi-sito">
+            <i class="fa-solid fa-message fa-2xl"></i> <br />
+            Avvisi del Sito
+          </div>
         </div>
+      </div>
 
-        <!-- Vista delle impostazioni dettagliate -->
-        <div id="settings-detail-view">
-            <button id="settings-back-btn">&larr; Indietro</button>
-            <div id="settings-content">
-                <!-- Qui verrà inserito il contenuto specifico per la card selezionata -->
-            </div>
-        </div>
+      <!-- Vista delle impostazioni dettagliate -->
+      <div id="settings-detail-view">
+        <!-- Il contenuto verrà creato dinamicamente: header + contenuto -->
+        <div id="settings-content"></div>
+      </div>
     </div>
 
     <script>
-        // Seleziona gli elementi della pagina
-        const settingsCards = document.querySelectorAll('.settings-card');
-        const settingsSelectionView = document.getElementById('settings-selection-view');
-        const settingsDetailView = document.getElementById('settings-detail-view');
-        const settingsContent = document.getElementById('settings-content');
-        const settingsBackBtn = document.getElementById('settings-back-btn');
+      // Funzione per creare la vista dettaglio dinamicamente
+      function createDetailView(settingId) {
+        const contentContainer = document.getElementById("settings-content");
+        contentContainer.innerHTML = ""; // Pulizia del contenuto precedente
 
-        // Oggetto contenente i dettagli per ogni impostazione
-        const settingsDetails = {
-            'impostazioni-base': '<h2>Impostazioni Base</h2><p>Qui puoi configurare le impostazioni di base del sito.</p>',
-            'impostazioni-account': '<h2>Impostazioni Account</h2><p>Gestisci i dettagli del tuo account.</p>',
-            'abbonamento': '<h2>Abbonamento</h2><p>Visualizza e modifica il tuo piano di abbonamento.</p>',
-            'aspetto-sito': '<h2>Aspetto del Sito</h2><p>Personalizza il look & feel del sito.</p>',
-            'notifiche-email': '<h2>Notifiche Email</h2><p>Imposta le preferenze per le notifiche email.</p>',
-            'avvisi-sito': '<h2>Avvisi del Sito</h2><p>Gestisci gli avvisi e le notifiche sul sito.</p>'
-        };
+        // Creazione dell'header (freccia "back" e titolo)
+        const headerDiv = document.createElement("div");
+        headerDiv.classList.add("settings-detail-header");
 
-        // Aggiunge l'evento click a ciascuna card per mostrare il dettaglio
-        settingsCards.forEach(card => {
-            card.addEventListener('click', () => {
-                const settingId = card.getAttribute('data-setting');
-                // Aggiorna il contenuto in base alla card selezionata
-                settingsContent.innerHTML = settingsDetails[settingId] || '<p>Nessun dettaglio disponibile.</p>';
-                // Passa dalla vista delle card a quella del dettaglio
-                settingsSelectionView.style.display = 'none';
-                settingsDetailView.style.display = 'block';
-            });
+        const backBtn = document.createElement("button");
+        backBtn.id = "settings-back-btn";
+        backBtn.innerHTML = '<i class="fa-solid fa-arrow-left-long"></i>';
+        backBtn.addEventListener("click", () => {
+          document.getElementById("settings-detail-view").style.display =
+            "none";
+          document.getElementById("settings-selection-view").style.display =
+            "block";
+          settingsContainer.style.width = "600px";
+          settingsContainer.style.height = "";
         });
 
-        // Gestisce il click sul pulsante "Indietro" per tornare alla selezione delle card
-        settingsBackBtn.addEventListener('click', () => {
-            settingsDetailView.style.display = 'none';
-            settingsSelectionView.style.display = 'block';
+        const saveBtn = document.createElement("button");
+        saveBtn.id = "settings-back-btn";
+        saveBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i>';
+        saveBtn.addEventListener("click", () => {
+            console.log('Impostazioni salvate!')
         });
+
+        const titleEl = document.createElement("h2");
+        titleEl.id = "settings-detail-title";
+
+        // Creazione del contenuto specifico per ciascuna impostazione
+        const detailContent = document.createElement("div");
+
+        switch (settingId) {
+          case "impostazioni-base":
+            titleEl.textContent = "Impostazioni Base";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Configura le impostazioni di base del sito:";
+              detailContent.appendChild(p);
+
+              // Checkbox di esempio
+              const checkboxLabel = document.createElement("label");
+              const checkbox = document.createElement("input");
+              checkbox.type = "checkbox";
+              checkbox.id = "advanced-mode";
+              checkboxLabel.appendChild(checkbox);
+              checkboxLabel.appendChild(
+                document.createTextNode(" Abilita modalità avanzata")
+              );
+              detailContent.appendChild(checkboxLabel);
+
+              // Radio buttons in orizzontale per la selezione della lingua
+              const langContainer = document.createElement("div");
+              langContainer.classList.add("horizontal-options");
+              const langLabel = document.createElement("span");
+              langLabel.textContent = "Seleziona lingua:";
+              langContainer.appendChild(langLabel);
+
+              const radioIt = document.createElement("input");
+              radioIt.type = "radio";
+              radioIt.name = "language";
+              radioIt.id = "lang-italian";
+              radioIt.value = "italian";
+              radioIt.checked = true;
+              const radioItLabel = document.createElement("label");
+              radioItLabel.setAttribute("for", "lang-italian");
+              radioItLabel.textContent = "Italiano";
+
+              const radioEn = document.createElement("input");
+              radioEn.type = "radio";
+              radioEn.name = "language";
+              radioEn.id = "lang-english";
+              radioEn.value = "english";
+              const radioEnLabel = document.createElement("label");
+              radioEnLabel.setAttribute("for", "lang-english");
+              radioEnLabel.textContent = "English";
+
+              langContainer.appendChild(radioIt);
+              langContainer.appendChild(radioItLabel);
+              langContainer.appendChild(radioEn);
+              langContainer.appendChild(radioEnLabel);
+              detailContent.appendChild(langContainer);
+            }
+            break;
+
+          case "impostazioni-account":
+            titleEl.textContent = "Impostazioni Account";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Gestisci le impostazioni del tuo account:";
+              detailContent.appendChild(p);
+
+              const emailLabel = document.createElement("label");
+              emailLabel.textContent = "Ricevi notifiche via email:";
+              const emailCheckbox = document.createElement("input");
+              emailCheckbox.type = "checkbox";
+              emailCheckbox.checked = true;
+              emailLabel.appendChild(emailCheckbox);
+              detailContent.appendChild(emailLabel);
+            }
+            break;
+
+          case "abbonamento":
+            titleEl.textContent = "Abbonamento";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Visualizza e gestisci il tuo abbonamento:";
+              detailContent.appendChild(p);
+
+              const planP = document.createElement("p");
+              planP.textContent = "Seleziona il piano:";
+              detailContent.appendChild(planP);
+
+              // Radio buttons in orizzontale per la selezione del piano
+              const planContainer = document.createElement("div");
+              planContainer.classList.add("horizontal-options");
+
+              const planBasic = document.createElement("input");
+              planBasic.type = "radio";
+              planBasic.name = "plan";
+              planBasic.id = "plan-basic";
+              planBasic.value = "basic";
+              planBasic.checked = true;
+              const planBasicLabel = document.createElement("label");
+              planBasicLabel.setAttribute("for", "plan-basic");
+              planBasicLabel.textContent = "Basic";
+
+              const planPro = document.createElement("input");
+              planPro.type = "radio";
+              planPro.name = "plan";
+              planPro.id = "plan-pro";
+              planPro.value = "pro";
+              const planProLabel = document.createElement("label");
+              planProLabel.setAttribute("for", "plan-pro");
+              planProLabel.textContent = "Pro";
+
+              planContainer.appendChild(planBasic);
+              planContainer.appendChild(planBasicLabel);
+              planContainer.appendChild(planPro);
+              planContainer.appendChild(planProLabel);
+              detailContent.appendChild(planContainer);
+            }
+            break;
+
+          case "aspetto-sito":
+            titleEl.textContent = "Aspetto del Sito";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Personalizza il look & feel del sito:";
+              detailContent.appendChild(p);
+
+              // Radio buttons per la selezione del tema (Light, Dark, Personalizzato) in orizzontale
+              const themeContainer = document.createElement("div");
+              themeContainer.classList.add("horizontal-options");
+
+              const radioLight = document.createElement("input");
+              radioLight.type = "radio";
+              radioLight.name = "theme";
+              radioLight.id = "theme-light";
+              radioLight.value = "light";
+              const radioLightLabel = document.createElement("label");
+              radioLightLabel.setAttribute("for", "theme-light");
+              radioLightLabel.textContent = "Light";
+
+              const radioDark = document.createElement("input");
+              radioDark.type = "radio";
+              radioDark.name = "theme";
+              radioDark.id = "theme-dark";
+              radioDark.value = "dark";
+              const radioDarkLabel = document.createElement("label");
+              radioDarkLabel.setAttribute("for", "theme-dark");
+              radioDarkLabel.textContent = "Dark";
+
+              const radioCustom = document.createElement("input");
+              radioCustom.type = "radio";
+              radioCustom.name = "theme";
+              radioCustom.id = "theme-custom";
+              radioCustom.value = "custom";
+              radioCustom.checked = true
+              const radioCustomLabel = document.createElement("label");
+              radioCustomLabel.setAttribute("for", "theme-custom");
+              radioCustomLabel.textContent = "Personalizzato";
+
+              themeContainer.appendChild(radioLight);
+              themeContainer.appendChild(radioLightLabel);
+              themeContainer.appendChild(radioDark);
+              themeContainer.appendChild(radioDarkLabel);
+              themeContainer.appendChild(radioCustom);
+              themeContainer.appendChild(radioCustomLabel);
+              detailContent.appendChild(themeContainer);
+
+              // Selettore di stili personalizzati (cerchi divisi a metà)
+              const styleSelectorContainer = document.createElement("div");
+              styleSelectorContainer.classList.add("style-selector");
+              styleSelectorContainer.id = "style-selector";
+              // Nascondo inizialmente il selettore
+              styleSelectorContainer.style.display = "none";
+
+              const styles = [
+                {
+                  id: "style-blue-green",
+                  colors:
+                    "#FDC145",
+                },
+                {
+                  id: "style-red-orange",
+                  colors:
+                    "#F96EE3",
+                },
+                {
+                  id: "style-purple-pink",
+                  colors:
+                    "#6D22FF",
+                },
+                {
+                  id: "style-teal-gray",
+                  colors:
+                    "#30CDB6",
+                },
+                {
+                  id: "style-brown-beige",
+                  colors:
+                    "#5F7CC2",
+                },
+              ];
+
+              styles.forEach((styleOption) => {
+                const optionDiv = document.createElement("div");
+                optionDiv.classList.add("custom-style-option");
+
+                //Da cancellare quando collego vera gestione temi
+                if(styleOption.id == "style-purple-pink"){optionDiv.classList.add("selected")}
+
+                optionDiv.id = styleOption.id;
+                optionDiv.setAttribute("data-style", styleOption.id);
+                optionDiv.style.background = styleOption.colors;
+                // Gestione della selezione: aggiunge/rimuove la classe 'selected'
+                optionDiv.addEventListener("click", () => {
+                  document
+                    .querySelectorAll(".custom-style-option")
+                    .forEach((opt) => {
+                      opt.classList.remove("selected");
+                    });
+                  optionDiv.classList.add("selected");
+                });
+                styleSelectorContainer.appendChild(optionDiv);
+                updateStyleSelectorVisibility()
+              });
+              detailContent.appendChild(styleSelectorContainer);
+
+              // Funzione per mostrare/nascondere il selettore in base al tema selezionato
+              function updateStyleSelectorVisibility() {
+                if (radioCustom.checked) {
+                  styleSelectorContainer.style.display = "flex";
+                } else {
+                  styleSelectorContainer.style.display = "none";
+                }
+              }
+              // Aggiungo gli event listener ai radio button del tema
+              radioLight.addEventListener(
+                "change",
+                updateStyleSelectorVisibility
+              );
+              radioDark.addEventListener(
+                "change",
+                updateStyleSelectorVisibility
+              );
+              radioCustom.addEventListener(
+                "change",
+                updateStyleSelectorVisibility
+              );
+            }
+            break;
+
+          case "notifiche-email":
+            titleEl.textContent = "Notifiche Email";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Imposta le preferenze per le notifiche email:";
+              detailContent.appendChild(p);
+
+              const promoLabel = document.createElement("label");
+              const promoCheckbox = document.createElement("input");
+              promoCheckbox.type = "checkbox";
+              promoCheckbox.id = "promo-emails";
+              promoLabel.appendChild(promoCheckbox);
+              promoLabel.appendChild(
+                document.createTextNode(" Ricevi email promozionali")
+              );
+              detailContent.appendChild(promoLabel);
+            }
+            break;
+
+          case "avvisi-sito":
+            titleEl.textContent = "Avvisi del Sito";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Gestisci gli avvisi del sito:";
+              detailContent.appendChild(p);
+
+              const alertLabel = document.createElement("label");
+              const alertCheckbox = document.createElement("input");
+              alertCheckbox.type = "checkbox";
+              alertCheckbox.id = "site-alerts";
+              alertLabel.appendChild(alertCheckbox);
+              alertLabel.appendChild(document.createTextNode(" Mostra avvisi"));
+              detailContent.appendChild(alertLabel);
+            }
+            break;
+
+          default:
+            titleEl.textContent = "Dettaglio Impostazione";
+            {
+              const p = document.createElement("p");
+              p.textContent = "Nessun dettaglio disponibile.";
+              detailContent.appendChild(p);
+            }
+            break;
+        }
+
+        // Inserimento dell'header (back + titolo) e del contenuto specifico
+        headerDiv.appendChild(backBtn);
+        headerDiv.appendChild(titleEl);
+        headerDiv.appendChild(saveBtn);
+        contentContainer.appendChild(headerDiv);
+        contentContainer.appendChild(detailContent);
+      }
+
+      // Selezione degli elementi della pagina
+      const settingsCards = document.querySelectorAll(".settings-card");
+      const settingsContainer = document.getElementById("settings-container");
+      const settingsSelectionView = document.getElementById(
+        "settings-selection-view"
+      );
+      const settingsDetailView = document.getElementById(
+        "settings-detail-view"
+      );
+
+      // Evento al click su ciascuna card
+      settingsCards.forEach((card) => {
+        card.addEventListener("click", () => {
+          const settingId = card.getAttribute("data-setting");
+          settingsSelectionView.style.display = "none";
+          settingsDetailView.style.display = "block";
+          settingsContainer.style.width = "80%";
+          settingsContainer.style.height = "70%";
+          createDetailView(settingId);
+        });
+      });
     </script>
-</body>
+  </body>
 </html>

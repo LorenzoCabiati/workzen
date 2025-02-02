@@ -4,8 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="../style.css">
 </head>
-<body>
-    Impostazioni
+<body class="settings-body">
+    <div class="settings-container">
+        <!-- Vista di selezione delle card -->
+        <div id="settings-selection-view">
+            <div class="settings-grid">
+                <div class="settings-card" data-setting="impostazioni-base">
+                    <i class="fa-solid fa-sliders fa-2xl"></i> <br> Impostazioni Base
+                </div>
+                <div class="settings-card" data-setting="impostazioni-account">
+                    <i class="fa-solid fa-user fa-2xl"></i> <br> Account
+                </div>
+                <div class="settings-card" data-setting="abbonamento">
+                    <i class="fa-solid fa-circle-info fa-2xl"></i> <br> Help
+                </div>
+                <div class="settings-card" data-setting="aspetto-sito">
+                    <i class="fa-solid fa-palette fa-2xl"></i> <br> Aspetto del Sito
+                </div>
+                <div class="settings-card" data-setting="notifiche-email">
+                    <i class="fa-solid fa-envelope fa-2xl"></i> <br> Notifiche Email
+                </div>
+                <div class="settings-card" data-setting="avvisi-sito">
+                    <i class="fa-solid fa-message fa-2xl"></i> <br> Avvisi del Sito
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista delle impostazioni dettagliate -->
+        <div id="settings-detail-view">
+            <button id="settings-back-btn">&larr; Indietro</button>
+            <div id="settings-content">
+                <!-- Qui verrà inserito il contenuto specifico per la card selezionata -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Seleziona gli elementi della pagina
+        const settingsCards = document.querySelectorAll('.settings-card');
+        const settingsSelectionView = document.getElementById('settings-selection-view');
+        const settingsDetailView = document.getElementById('settings-detail-view');
+        const settingsContent = document.getElementById('settings-content');
+        const settingsBackBtn = document.getElementById('settings-back-btn');
+
+        // Oggetto contenente i dettagli per ogni impostazione
+        const settingsDetails = {
+            'impostazioni-base': '<h2>Impostazioni Base</h2><p>Qui puoi configurare le impostazioni di base del sito.</p>',
+            'impostazioni-account': '<h2>Impostazioni Account</h2><p>Gestisci i dettagli del tuo account.</p>',
+            'abbonamento': '<h2>Abbonamento</h2><p>Visualizza e modifica il tuo piano di abbonamento.</p>',
+            'aspetto-sito': '<h2>Aspetto del Sito</h2><p>Personalizza il look & feel del sito.</p>',
+            'notifiche-email': '<h2>Notifiche Email</h2><p>Imposta le preferenze per le notifiche email.</p>',
+            'avvisi-sito': '<h2>Avvisi del Sito</h2><p>Gestisci gli avvisi e le notifiche sul sito.</p>'
+        };
+
+        // Aggiunge l'evento click a ciascuna card per mostrare il dettaglio
+        settingsCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const settingId = card.getAttribute('data-setting');
+                // Aggiorna il contenuto in base alla card selezionata
+                settingsContent.innerHTML = settingsDetails[settingId] || '<p>Nessun dettaglio disponibile.</p>';
+                // Passa dalla vista delle card a quella del dettaglio
+                settingsSelectionView.style.display = 'none';
+                settingsDetailView.style.display = 'block';
+            });
+        });
+
+        // Gestisce il click sul pulsante "Indietro" per tornare alla selezione delle card
+        settingsBackBtn.addEventListener('click', () => {
+            settingsDetailView.style.display = 'none';
+            settingsSelectionView.style.display = 'block';
+        });
+    </script>
 </body>
 </html>

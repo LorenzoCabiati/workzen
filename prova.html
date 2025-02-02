@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurazione</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --main-background: #B787F2;
+            --elements: #7D2CE0;
+            --menu-hover: #6B2ABB;
+            --menu-selected: #4C04A4;
+            --title: #7D2CE0;
+            --text: #FFFFFF;
+            --text-disabled: #FFFFFF80;
+        }
+
+        .settings-body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 600px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            border-bottom: 2px solid #2c3e50;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            border-color: #f39c12;
+            background: #fff;
+        }
+
+        .card i {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        /* Stili per la vista dettaglio */
+        #detail-view {
+            display: none;
+        }
+
+        #back-btn {
+            background: none;
+            border: none;
+            color: #f39c12;
+            font-size: 18px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+        #setting-content {
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body class="settings-body">
+        <div class="container">
+            <!-- Vista di selezione delle card -->
+            <div id="selection-view">
+                <!-- <div class="title">Configurazione</div> -->
+                <div class="grid">
+                    <div class="card" data-setting="impostazioni-base">
+                        <i class="fa-solid fa-sliders fa-2xl"></i> <br> Impostazioni Base
+                    </div>
+                    <div class="card" data-setting="impostazioni-account">
+                        <i class="fa-solid fa-user fa-2xl"></i> <br> Account
+                    </div>
+                    <div class="card" data-setting="abbonamento">
+                        <i class="fa-solid fa-circle-info fa-2xl"></i> <br> Help
+                    </div>
+                    <div class="card" data-setting="aspetto-sito">
+                        <i class="fa-solid fa-palette fa-2xl"></i> <br> Aspetto del Sito
+                    </div>
+                    <div class="card" data-setting="notifiche-email">
+                        <i class="fa-solid fa-envelope fa-2xl"></i> <br> Notifiche Email
+                    </div>
+                    <div class="card" data-setting="avvisi-sito">
+                        <i class="fa-solid fa-message fa-2xl"></i> <br> Avvisi del Sito
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Vista delle impostazioni dettagliate -->
+            <div id="detail-view">
+                <button id="back-btn">&larr; Indietro</button>
+                <div id="setting-content">
+                    <!-- Qui verrà inserito il contenuto specifico per la card selezionata -->
+                </div>
+            </div>
+        </div>
+
+
+    <script>
+        // Seleziona gli elementi della pagina
+        const cards = document.querySelectorAll('.card');
+        const selectionView = document.getElementById('selection-view');
+        const detailView = document.getElementById('detail-view');
+        const settingContent = document.getElementById('setting-content');
+        const backBtn = document.getElementById('back-btn');
+
+        // Oggetto contenente i dettagli per ogni impostazione (personalizza i contenuti come preferisci)
+        const settingsDetails = {
+            'impostazioni-base': '<h2>Impostazioni Base</h2><p>Qui puoi configurare le impostazioni di base del sito.</p>',
+            'impostazioni-account': '<h2>Impostazioni Account</h2><p>Gestisci i dettagli del tuo account.</p>',
+            'abbonamento': '<h2>Abbonamento</h2><p>Visualizza e modifica il tuo piano di abbonamento.</p>',
+            'aspetto-sito': '<h2>Aspetto del Sito</h2><p>Personalizza il look & feel del sito.</p>',
+            'notifiche-email': '<h2>Notifiche Email</h2><p>Imposta le preferenze per le notifiche email.</p>',
+            'avvisi-sito': '<h2>Avvisi del Sito</h2><p>Gestisci gli avvisi e le notifiche sul sito.</p>'
+        };
+
+        // Aggiunge l'evento click a ciascuna card per mostrare il dettaglio
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const settingId = card.getAttribute('data-setting');
+                // Aggiorna il contenuto in base alla card selezionata
+                settingContent.innerHTML = settingsDetails[settingId] || '<p>Nessun dettaglio disponibile.</p>';
+                // Passa dalla vista delle card a quella del dettaglio
+                selectionView.style.display = 'none';
+                detailView.style.display = 'block';
+            });
+        });
+
+        // Gestisce il click sul pulsante "Indietro" per tornare alla selezione delle card
+        backBtn.addEventListener('click', () => {
+            detailView.style.display = 'none';
+            selectionView.style.display = 'block';
+        });
+    </script>
+</body>
+
+</html>

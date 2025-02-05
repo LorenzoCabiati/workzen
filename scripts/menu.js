@@ -6,6 +6,10 @@ let btn3 = document.getElementById("m-upper-3");
 let btn4 = document.getElementById("m-bottom-1");
 let btn5 = document.getElementById("m-bottom-2");
 
+const menuNav = document.getElementById("side-menu")
+const menuBtn = document.getElementById("menu-btn")
+const iframe = document.getElementById("contentIFrame");
+
 btn1.addEventListener("click", function(){
     iFrame.src="pages/home.html"
 
@@ -30,4 +34,11 @@ function removeClassFromAll(className) {
     document.querySelectorAll(`.${className}`).forEach(element => {
         element.classList.remove(className);
     });
+    menuNav.classList.remove("menu-visible");
+    iframe.classList.remove("body-opa")
 }
+
+menuBtn.addEventListener("click", () => {
+    menuNav.classList.toggle("menu-visible")
+    iframe.classList.toggle("body-opa")
+})

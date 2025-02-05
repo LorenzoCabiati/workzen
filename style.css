@@ -1,328 +1,395 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-:root{
-    --main-background: #B787F2;
-    --elements: #7D2CE0;
-    --menu-hover: #6B2ABB;
-    --menu-selected: #4C04A4;
-    --title: #7D2CE0;
-    --text: #FFFFFF;
-    --text-disabled: #FFFFFF80;
+:root {
+  --main-background: #B787F2;
+  --elements: #7D2CE0;
+  --menu-hover: #6B2ABB;
+  --menu-selected: #4C04A4;
+  --title: #7D2CE0;
+  --text: #FFFFFF;
+  --text-disabled: #FFFFFF80;
 }
 
-*{
-    font-family: "Montserrat", sans-serif;
-    user-select: none;
+* {
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
 }
 
 .main-html {
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    background-color: var(--main-background);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  background-color: var(--main-background);
 }
 
 .application {
-    width: 90vw;
-    height: 91vh;
-    background-color: #fff;
-    border-radius: 25px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90vw;
+  height: 91vh;
+  background-color: #fff;
+  border-radius: 25px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.app-container{
-    display: flex;
+.app-container {
+  display: flex;
 }
 
-.content{
-    width: 100%;
+.content {
+  width: 100%;
 }
 
-.header{
-    display: flex;
-    width: 100%;
-    height: 10vh;
-    background-color: #F4F3F3;
-    border-radius: 25px 25px 0 0;
+.header {
+  display: flex;
+  width: 100%;
+  height: 10vh;
+  background-color: #F4F3F3;
+  border-radius: 25px 25px 0 0;
 }
 
-.title{
-    width: 25vh;
-    text-align: center;
-    place-content: center;
-    font-size: 30px;
-    font-weight: 600;
-    color: var(--title);
+.title {
+  width: 25vh;
+  text-align: center;
+  place-content: center;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--title);
 }
 
-.header-side{
-    place-content: center;
+.title i {
+  display: none;
+  margin: 0 20px 0 20px;
 }
 
-.user-search{
-    all: unset;
-    width: 300px;
-    border: 1px solid var(--elements);
-    border-radius: 18px;
-    padding: 10px 10px 10px 20px;
-    margin-left: 100px;
+.header-side {
+  place-content: center;
 }
 
-.header-side{
-    width: calc(100% - 25vh);
+.user-search {
+  all: unset;
+  width: 300px;
+  border: 1px solid var(--elements);
+  border-radius: 18px;
+  padding: 10px 10px 10px 20px;
+  margin-left: 100px;
 }
 
-.app-container{
-    width: 100%;
-    height: 81vh;
-    background-color: #F4F3F3;
-    border-radius: 0 0 25px 25px;
+.header-side {
+  width: calc(100% - 25vh);
 }
 
-.side{
-    color: var(--text);
-    font-size: 18px;
-    display: flex;
-    flex-direction: column;
-    width: 260px;
-    height: 100%;
-    background-color: var(--elements);
-    border-radius: 10px 10px 10px 25px;
+.app-container {
+  width: 100%;
+  height: 81vh;
+  background-color: #F4F3F3;
+  border-radius: 0 0 25px 25px;
+  
 }
 
-.side-menu{
-    margin: 0;
+.side {
+  color: var(--text);
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  height: 100%;
+  background-color: var(--elements);
+  border-radius: 10px 10px 10px 25px;
+  
+}
+
+
+.side-menu {
+  margin: 0;
 }
 
 .side-menu-upper {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 .side-menu-bottom {
-    margin-top: auto; 
-    margin-bottom: 30px;
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
-.m-option{
-    padding: 15px;
-    margin: 0 10px 0 10px;
-    border-radius: 7px;
-    transition: 0.3s ease;
-    cursor: pointer;
-}
-.m-option:hover{
-    background-color: var(--menu-hover);
+.m-option {
+  padding: 15px;
+  margin: 0 10px 0 10px;
+  border-radius: 7px;
+  transition: 0.3s ease;
+  cursor: pointer;
 }
 
-.m-option-text{
-    font-weight: 500;
-    margin-left: 15px;
+.m-option:hover {
+  background-color: var(--menu-hover);
 }
 
-.m-option-selected{
-    background-color: var(--menu-selected) !important;
+.m-option-text {
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+.m-option-selected {
+  background-color: var(--menu-selected) !important;
 }
 
 /* LOGIN */
 
-.login-body{
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    margin-top: 8vh;
+.login-body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  margin-top: 8vh;
 }
 
-.login-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 450px;
-    height: 65vh;
-    background-color: var(--elements);
-    border-radius: 20px 100px;
-    box-shadow: 10px 10px 21px -6px rgba(0, 0, 0, 0.2);
-    padding-top: 6vh;
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 450px;
+  height: 65vh;
+  background-color: var(--elements);
+  border-radius: 20px 100px;
+  box-shadow: 10px 10px 21px -6px rgba(0, 0, 0, 0.2);
+  padding-top: 6vh;
 }
 
-.login-title{
-    margin-top: 30px;
-    padding: 20px;
-    color: var(--text);
-    font-size: 27px;
-    font-weight: 500;
+.login-title {
+  margin-top: 30px;
+  padding: 20px;
+  color: var(--text);
+  font-size: 27px;
+  font-weight: 500;
 }
 
-.login-input-user, .login-input-pass{
-    all: initial;
-    font-family: "Montserrat", sans-serif;
-    user-select: none;
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.5);
-    margin: 15px;
-    width: 250px;
-    padding: 10px 10px 10px 20px;
-    border-radius: 18px;
-    color: var(--text);
+.login-input-user,
+.login-input-pass {
+  all: initial;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  margin: 15px;
+  width: 250px;
+  padding: 10px 10px 10px 20px;
+  border-radius: 18px;
+  color: var(--text);
 }
 
-.login-input-user::placeholder, .login-input-pass::placeholder{
-    color: rgba(255, 255, 255, 0.5);
+.login-input-user::placeholder,
+.login-input-pass::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.login-input-user:focus, .login-input-pass:focus{
-    border: 2px solid var(--text);
+.login-input-user:focus,
+.login-input-pass:focus {
+  border: 2px solid var(--text);
 }
 
-.login-input-submit{
-    all: initial;
-    font-family: "Montserrat", sans-serif;
-    user-select: none;
-    background-color: var(--text);
-    margin: 15px;
-    padding: 12px 17px 12px 17px;
-    border-radius: 18px;
-    color: var(--elements);
+.login-input-submit {
+  all: initial;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  background-color: var(--text);
+  margin: 15px;
+  padding: 12px 17px 12px 17px;
+  border-radius: 18px;
+  color: var(--elements);
 }
 
-.login-input-submit:hover{
-    all: initial;
-    font-family: "Montserrat", sans-serif;
-    user-select: none;
-    background-color: var(--text-disabled);
-    margin: 15px;
-    padding: 12px 17px 12px 17px;
-    border-radius: 18px;
-    color: --elements;
-    transition: .3s ease;
-    cursor: pointer;
+.login-input-submit:hover {
+  all: initial;
+  font-family: "Montserrat", sans-serif;
+  user-select: none;
+  background-color: var(--text-disabled);
+  margin: 15px;
+  padding: 12px 17px 12px 17px;
+  border-radius: 18px;
+  color: --elements;
+  transition: .3s ease;
+  cursor: pointer;
 }
 
 /* IMPOSTAZIONI */
 
 .settings-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.settings-container {
+  background: var(--elements);
+  padding: 60px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 600px;
+  transition: width 0.3s, height 0.3s;
+}
+
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.settings-card {
+  background: var(--text);
+  color: var(--elements);
+  padding: 40px;
+  border-radius: 10px;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.settings-card:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.settings-card i {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/* Vista dettaglio */
+#settings-detail-view {
+  display: none;
+}
+
+/* Header nella vista dettaglio */
+.settings-detail-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  justify-content: center;
+  gap: 30px;
+}
+
+#settings-back-btn {
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 24px;
+  cursor: pointer;
+  transition: .3s ease;
+}
+
+#settings-back-btn:hover {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#settings-detail-title {
+  margin-left: 10px;
+  color: var(--text);
+}
+
+/* Contenuto nella vista dettaglio */
+#settings-content {
+  text-align: left;
+  color: var(--text);
+}
+
+/* Container per opzioni radio disposte in orizzontale */
+.horizontal-options {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+/* Selettore di stili personalizzati in orizzontale */
+.style-selector {
+  display: flex;
+  /* justify-content: center; */
+  gap: 15px;
+  margin-top: 15px;
+}
+
+/* Rettangolini per le opzioni personalizzate */
+.custom-style-option {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border 0.3s;
+  border-radius: 50%;
+}
+
+.custom-style-option.selected {
+  border: 2px solid var(--text);
+}
+
+/* Stili aggiuntivi per label e input */
+#settings-content label {
+  display: block;
+  margin: 10px 0;
+}
+
+#settings-content input[type="radio"],
+#settings-content input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.menu-visible{
+  display: flex !important;
+}
+
+.body-opa{
+  filter: brightness(70%); /* Riduce la luminosità al 50% */
+}
+
+@media (max-width: 800px) {
   .settings-container {
-    background: var(--elements);
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    width: 600px;
-    transition: width 0.3s, height 0.3s;
-  }
-  
-  .settings-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    margin-top: 20px;
-  }
-  
-  .settings-card {
-    background: var(--text);
-    color: var(--elements);
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    border: 2px solid transparent;
-    transition: all 0.3s;
-    cursor: pointer;
-  }
-  
-  .settings-card:hover {
-    background: rgba(255, 255, 255, 0.9);
-  }
-  
-  .settings-card i {
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
-  
-  /* Vista dettaglio */
-  #settings-detail-view {
-    display: none;
-  }
-  
-  /* Header nella vista dettaglio */
-  .settings-detail-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: center;
-    gap: 30px;
-  }
-  
-  #settings-back-btn {
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 24px;
-    cursor: pointer;
-    transition: .3s ease;
+    width: 50% !important;
   }
 
-  #settings-back-btn:hover {
-    color: rgba(255, 255, 255, 0.5);
+  .settings-grid {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
   }
-  
-  #settings-detail-title {
-    margin-left: 10px;
-    color: var(--text);
+
+  .settings-card {
+    width: 7rem;
+    padding: 20px;
   }
-  
-  /* Contenuto nella vista dettaglio */
-  #settings-content {
-    text-align: left;
-    color: var(--text);
+}
+
+@media (max-width: 930px) {
+  .title i {
+    display: inline;
   }
-  
-  /* Container per opzioni radio disposte in orizzontale */
-  .horizontal-options {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    margin: 10px 0;
+
+  .header-side {
+    display: none;
   }
-  
-  /* Selettore di stili personalizzati in orizzontale */
-  .style-selector {
-    display: flex;
-    /* justify-content: center; */
-    gap: 15px;
-    margin-top: 15px;
+
+  .side {
+    display: none;
+    height: 81%;
+    position: absolute; /* Mantiene il div fisso nella pagina */
+    z-index: 1000; /* Assicura che sia sopra gli altri elementi */
   }
-  
-  /* Rettangolini per le opzioni personalizzate */
-  .custom-style-option {
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border 0.3s;
-    border-radius: 50%;
+
+  .settings-container {
+    width: 70% !important;
   }
-  
-  .custom-style-option.selected {
-    border: 2px solid var(--text);
+}
+
+@media (max-width: 500px){
+  .settings-container{
+    padding: 10px;
   }
-  
-  /* Stili aggiuntivi per label e input */
-  #settings-content label {
-    display: block;
-    margin: 10px 0;
+
+  .settings-card{
+    width: 4rem;
   }
-  
-  #settings-content input[type="radio"],
-  #settings-content input[type="checkbox"] {
-    margin-right: 5px;
-  }
+}

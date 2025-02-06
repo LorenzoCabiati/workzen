@@ -17,8 +17,8 @@ function removeClassFromAll(className) {
     element.classList.remove(className);
   });
   menuNav.classList.remove("menu-visible");
-  menuOverlay.classList.remove("visible");
-  iframe.classList.remove("body-opa");
+//   menuOverlay.classList.remove("visible");
+//   iframe.classList.remove("body-opa");
 }
 
 btn1.addEventListener("click", function() {
@@ -51,16 +51,3 @@ menuBtn.addEventListener("click", () => {
     iframe.classList.add("body-opa");
   }
 });
-
-// Se clicco sull'overlay, chiudo il menù
-// menuOverlay.addEventListener("click", () => {
-//   menuNav.classList.remove("menu-visible");
-//   menuOverlay.classList.remove("visible");
-//   iframe.classList.remove("body-opa");
-// });
-
-// // Ripristino corretto del layout quando torno indietro
-// document.getElementById("back-btn").addEventListener("click", () => {
-//   document.getElementById("settings-detail-view").style.display = "none";
-//   document.getElementById("settings-selection-view").style.display = "block";
-// });

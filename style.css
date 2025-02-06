@@ -69,6 +69,12 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  gap: 25px;
+  margin-right: 20px;
+}
+
+.header-side i{
+  color: var(--elements);
 }
 
 .user-search {
@@ -146,7 +152,7 @@
   margin: 0;
   display: flex;
   justify-content: center;
-  margin-top: 8vh;
+  margin-top: 15vh;
 }
 
 .login-container {
